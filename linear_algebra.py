@@ -33,8 +33,14 @@ def vector_sub(vector_1, vector_2):
     Matrix + Matrix = Matrix
     """
     shape_exception_check(vector_1, vector_2)
-    return [vector_1[i] - vector_2[i] for i in range(len(vector_1))]
+    return [vector_1[i] - vector_2[i] for i in len(vector_1)]
     # assert vector_sub(v, w) == [1, 1, -4]
     # assert vector_sub(w, v) == [-1, -1, 4]
     # assert vector_sub(y, z) == y
     # assert vector_sub(w, u) == vector_sub(z, vector_sub(u, w))
+
+def vector_sum(*args):
+    return [vector_sum(i) for i in zip(*args)]
+    # """vector_sum can take any number of vectors and add them together."""
+    #
+    # assert vector_sum(v, w, u, y, z) == [12, 26, 35]
