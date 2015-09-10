@@ -11,8 +11,9 @@ def shape(vector):
     """shape should take a vector or matrix and return a tuple with the
     number of rows (for a vector) or the number of rows and columns
     (for a matrix.)"""
-    return (len(vector),)
-
+    if type(vector[0]) != list:
+        return (len(vector),)
+    return (len(vector),len(vector[0]))
 def vector_add(vector_1, vector_2):
     """
     [a b]  + [c d]  = [a+c b+d]
@@ -79,3 +80,29 @@ def magnitude(vector):
     assert magnitude(v) == math.sqrt(10)
     assert magnitude(y) == math.sqrt(1400)
     assert magnitude(z) == 0
+
+def matrix_row(matrix, row):
+    """
+           0 1  <- rows
+       0 [[a b]]
+       1 [[c d]]
+       ^
+     columns
+    """
+    return matrix[row]
+    assert matrix_row(A, 0) == [1, 0, 0]
+    assert matrix_row(B, 1) == [4, 5, 6]
+    assert matrix_row(C, 2) == [1, 2]
+
+def matrix_col(matrix, column):
+    """
+           0 1  <- rows
+       0 [[a b]]
+       1 [[c d]]
+       ^
+     columns
+    """
+    return [l[column]for l in matrix]
+    assert matrix_col(A, 0) == [1, 0, 0]
+    assert matrix_col(B, 1) == [2, 5, 8]
+    assert matrix_col(D, 2) == [3, 1]
