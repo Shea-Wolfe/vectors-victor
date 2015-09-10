@@ -6,6 +6,9 @@ def shape_exception_check(vector_1, vector_2):
     if shape(vector_1) != shape(vector_2):
         raise ShapeException('Those vectors aren\'t the same length!')
 
+def matrix_exception_check(matrix, vector):
+    if len(matrix[0]) != len(vector):
+        raise ShapeException('Those vectors aren\'t the same length!')
 
 def shape(vector):
     """shape should take a vector or matrix and return a tuple with the
@@ -109,6 +112,16 @@ def matrix_scalar_multiply(matrix, scalar):
     Matrix * Scalar = Matrix
     """
     return [vector_multiply(vector, scalar) for vector in matrix]
-    assert matrix_scalar_multiply(C, 3) == [[3, 6],
-                                            [6, 3],
-                                            [3, 6]]
+
+def matrix_vector_multiply(matrix, vector):
+    """
+    [[a b g]   *  [x   =   [a*x+b*y+g*z
+     [c d h]       y        c*x+d*y+h*z
+     [e f i]       z]       e*x+f*y+i*z]
+
+    Matrix * Vector = Vector
+    """
+    matrix_exception_check(matrix, vector)
+    post_mult = [vector_multiply(matrix_col(matrix,i), vector[i]) for i in range(len(vector))]
+    correct_rows = [matrix_col(post_mult, i) for i in range(len(post_mult[0]))]
+    return [sum(x) for x in correct_rows]
