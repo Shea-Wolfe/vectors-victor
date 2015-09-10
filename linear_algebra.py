@@ -40,7 +40,19 @@ def vector_sub(vector_1, vector_2):
     # assert vector_sub(w, u) == vector_sub(z, vector_sub(u, w))
 
 def vector_sum(*args):
-    return [vector_sum(i) for i in zip(*args)]
+    return [vector_add(v_1,v_2) for v_1 in args for v_2 in args if v_1 != v_2]
+print(vector_sum([3,2,1],[2,1,3],[1,3,2],[1,2,3]))
     # """vector_sum can take any number of vectors and add them together."""
     #
     # assert vector_sum(v, w, u, y, z) == [12, 26, 35]
+
+def dot(vector_1, vector_2):
+    """
+    dot([a b], [c d])   = a * c + b * d
+
+    dot(Vector, Vector) = Scalar
+    """
+    return sum([vector_1[i]*vector_2[i] for i in range(len(vector_1))])
+    # assert dot(w, y) == 160
+    # assert dot(m, n) == 15
+    # assert dot(u, z) == 0
