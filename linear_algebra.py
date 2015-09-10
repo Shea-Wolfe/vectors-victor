@@ -52,7 +52,29 @@ def dot(vector_1, vector_2):
 
     dot(Vector, Vector) = Scalar
     """
+    shape_exception_check(vector_1, vector_2)
     return sum([vector_1[i]*vector_2[i] for i in range(len(vector_1))])
     # assert dot(w, y) == 160
     # assert dot(m, n) == 15
     # assert dot(u, z) == 0
+
+
+def vector_multiply(vector, scalar):
+    """
+    [a b]  *  Z     = [a*Z b*Z]
+
+    Vector * Scalar = Vector
+    """
+    return[vector[i]*scalar for i in range(len(vector))]
+    
+def test_vector_mean():
+    """
+    mean([a b], [c d]) = [mean(a, c) mean(b, d)]
+
+    mean(Vector)       = Vector
+    """
+    assert vector_mean(m, n) == [4, 2]
+    assert vector_mean(v, w) == [0.5, 2.5, 2]
+    assert is_equal(vector_mean(v, w, u)[0], 2 / 3)
+    assert is_equal(vector_mean(v, w, u)[1], 2)
+    assert is_equal(vector_mean(v, w, u)[2], 5 / 3)
