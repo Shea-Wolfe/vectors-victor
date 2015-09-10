@@ -10,6 +10,7 @@ def matrix_exception_check(matrix, vector):
     if len(matrix[0]) != len(vector):
         raise ShapeException('Those vectors aren\'t the same length!')
 
+
 def shape(vector):
     """shape should take a vector or matrix and return a tuple with the
     number of rows (for a vector) or the number of rows and columns
@@ -125,3 +126,14 @@ def matrix_vector_multiply(matrix, vector):
     post_mult = [vector_multiply(matrix_col(matrix,i), vector[i]) for i in range(len(vector))]
     correct_rows = [matrix_col(post_mult, i) for i in range(len(post_mult[0]))]
     return [sum(x) for x in correct_rows]
+
+def matrix_matrix_multiply(matrix_1,matrix_2):
+    """
+    [[a b]   *  [[w x]   =   [[a*w+b*y a*x+b*z]
+     [c d]       [y z]]       [c*w+d*y c*x+d*z]
+     [e f]                    [e*w+f*y e*x+f*z]]
+
+    Matrix * Matrix = Matrix
+    """
+    matrix_exception_check(matrix_1, matrix_2)
+    pass
