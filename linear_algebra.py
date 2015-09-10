@@ -76,10 +76,7 @@ def magnitude(vector):
     magnitude(Vector) = Scalar
     """
     return math.sqrt(sum([vector[i]**2 for i in range(len(vector))]))
-    assert magnitude(m) == 5
-    assert magnitude(v) == math.sqrt(10)
-    assert magnitude(y) == math.sqrt(1400)
-    assert magnitude(z) == 0
+
 
 def matrix_row(matrix, row):
     """
@@ -90,9 +87,7 @@ def matrix_row(matrix, row):
      columns
     """
     return matrix[row]
-    assert matrix_row(A, 0) == [1, 0, 0]
-    assert matrix_row(B, 1) == [4, 5, 6]
-    assert matrix_row(C, 2) == [1, 2]
+
 
 def matrix_col(matrix, column):
     """
@@ -103,6 +98,17 @@ def matrix_col(matrix, column):
      columns
     """
     return [l[column]for l in matrix]
-    assert matrix_col(A, 0) == [1, 0, 0]
-    assert matrix_col(B, 1) == [2, 5, 8]
-    assert matrix_col(D, 2) == [3, 1]
+
+
+
+def matrix_scalar_multiply(matrix, scalar):
+    """
+    [[a b]   *  Z   =   [[a*Z b*Z]
+     [c d]]              [c*Z d*Z]]
+
+    Matrix * Scalar = Matrix
+    """
+    return [vector_multiply(vector, scalar) for vector in matrix]
+    assert matrix_scalar_multiply(C, 3) == [[3, 6],
+                                            [6, 3],
+                                            [3, 6]]
